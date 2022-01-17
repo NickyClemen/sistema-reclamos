@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@config": ["../config"],
+      "@debug": ["./utils/debug"],
+      "@interfaces/*": ["./interfaces/*"],
+      "@middlewares/*": ["./middlewares/*"],
+      "@models/*": ["./models/*"],
+      "@routes": ["./routes"],
+      "@schemas": ["./schemas"],
+      "@static/*": ["../static/*"],
+      "@types": ["./types"],
+      "@utils": ["./utils"]
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
