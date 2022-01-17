@@ -1,19 +1,26 @@
+import debuggingLog from '@debug';
+
 import { ExportMiddlewaresParams } from '@types';
 
 import bodyRequestValidator from '@middlewares/bodyRequestValidator';
-import sessionValidator from './sessionValidator';
+import paramsRequestValidator from '@middlewares/paramsRequestValidator';
+import sessionValidator from '@middlewares/sessionValidator';
 
 const middlewares = {
-  reclamos: [
+  body: [
     bodyRequestValidator,
+    sessionValidator
+  ],
+  params: [
+    paramsRequestValidator,
     sessionValidator
   ]
 }
 
-export default function exportMiddlewares({ route, middlewareParameters }:ExportMiddlewaresParams) {
-  const arrMiddleware = Object.keys(middlewares).filter(key => key === route);
+export default function exportMiddlewares({ prop, middlewareParameters }:ExportMiddlewaresParams):Function[] {
+  debuggingLog(`--- [exportMiddlewares] ---`);
 
-  return arrMiddleware.map(middleware => middleware(middlewareParameters))
+  const arrMiddleware = Object.keys(middlewares).filter(key => key === prop);
 
-
+  return arrMiddleware.map((middleware:Function) => middleware(...middlewareParameters));
 }

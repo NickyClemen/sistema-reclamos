@@ -1,6 +1,6 @@
 import { Request } from 'express';
 
-import { Reclamo } from '@schemas';
+import { RequestParams } from '@schemas';
 import { MiddlewareParameters, Params, ReclamoParameters } from '@types';
 
 import { objectIsEmpty } from '@utils';
@@ -8,16 +8,16 @@ import debuggingLog from '@debug';
 
 import * as errorMessage from '@static/errorMessage.json';
 
-export default function bodyRequestValidator({ req, res, next }:MiddlewareParameters) {
-  debuggingLog(`--- [bodyRequestValidator] ---`);
+export default function paramsRequestValidator({ req, res, next }:MiddlewareParameters) {
+  debuggingLog(`--- [paramsRequestValidator] ---`);
 
-  const { body }:Request<Params, {}, ReclamoParameters, {}> = req;
+  const { params }:Request<Params, {}, ReclamoParameters, {}> = req;
 
-  if(objectIsEmpty(body)) {
+  if(objectIsEmpty(params)) {
     try {
-      const validateBody = Reclamo.validateAsync(body);
+      const validateParams = RequestParams.validateAsync(params);
 
-      if(validateBody) {
+      if(validateParams) {
         next();
       } else {
         return res
@@ -27,7 +27,7 @@ export default function bodyRequestValidator({ req, res, next }:MiddlewareParame
           });
       }
     } catch(err) {
-      debuggingLog(`--- [bodyRequestValidator] --- \n { message: ${ err.message }, \n errorCode: ${ err.code } \n }`);
+      debuggingLog(`--- [paramsRequestValidator] --- \n { message: ${ err.message }, \n errorCode: ${ err.code } \n }`);
 
       return res
         .status(400)

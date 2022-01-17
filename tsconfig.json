@@ -2,9 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
+      "@cache": ["./cache"],
       "@config": ["../config"],
       "@debug": ["./utils/debug"],
       "@interfaces/*": ["./interfaces/*"],
+      "@middlewares": ["./middlewares"],
       "@middlewares/*": ["./middlewares/*"],
       "@models/*": ["./models/*"],
       "@routes": ["./routes"],

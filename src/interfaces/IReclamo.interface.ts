@@ -1,9 +1,11 @@
 import IComuna from './IComuna.interface';
 
 export default interface IReclamo {
-  readonly id:string,
-  titulo:string,
-  descripcion:string,
-  readonly comuna:IComuna
-  imagen:File
+  readonly userId:string;
+  readonly id:string;
+  readonly nReclamo:number,
+  titulo:string;
+  descripcion:string;
+  readonly comuna:IComuna;
+  imagen?:File;
 }

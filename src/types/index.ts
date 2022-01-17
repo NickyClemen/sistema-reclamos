@@ -1,14 +1,26 @@
 import { Request, Response, NextFunction } from 'express';
 
-import IReclamo from '@interfaces/IReclamo.interface';
+import IComuna from '@interfaces/IComuna.interface';
+
+export type Params = {
+  id:string;
+}
 
 export type MiddlewareParameters = {
-  req:Request<{}, {}, IReclamo>,
+  req:Request<Params, {}, ReclamoParameters, {}>,
   res:Response,
   next:NextFunction
 }
 
+export type ReclamoParameters = {
+  userId:string,
+  titulo:string,
+  descripcion:string,
+  comuna:IComuna,
+  imagen:File
+}
+
 export type ExportMiddlewaresParams = {
-  route:string,
+  prop:string,
   middlewareParameters:MiddlewareParameters
 }
