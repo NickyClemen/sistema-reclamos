@@ -1,3 +1,9 @@
-import { MiddlewareParameters } from '@types';
+import { Request, Response, NextFunction } from 'express';
 
-export default function sessionValidator({ req, res, next }:MiddlewareParameters) {}
+import { Params, ReclamoParameters } from '@types';
+
+export default function sessionValidator(
+  req: Request<Params, unknown, ReclamoParameters, unknown>,
+  res: Response,
+  next: NextFunction
+) {}

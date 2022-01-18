@@ -3,20 +3,22 @@ import { AddressInfo } from 'net';
 
 import express, { Application } from 'express';
 
-import Config  from '@config';
-const { port } = new Config();
+import { Config } from '@config';
+const { PORT } = new Config();
+
+import debuggingLog from '@debug';
 
 import handler from '@routes';
 
-const app:Application = express();
+const app: Application = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 handler({ app });
 
-const server:Server = app.listen(port, () => {
+const server: Server = app.listen(PORT, () => {
   const { port } = server.address() as AddressInfo;
 
-  console.log(`Servidor escuchando desde el puerto ${ port }.`);
+  debuggingLog(`Servidor escuchando desde el puerto ${port}.`);
 });

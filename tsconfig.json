@@ -1,23 +1,37 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "target": "ES6",
     "paths": {
-      "@cache": ["./cache"],
-      "@config": ["../config"],
-      "@debug": ["./utils/debug"],
-      "@interfaces/*": ["./interfaces/*"],
-      "@middlewares": ["./middlewares"],
-      "@middlewares/*": ["./middlewares/*"],
-      "@models/*": ["./models/*"],
-      "@routes": ["./routes"],
-      "@schemas": ["./schemas"],
-      "@static/*": ["../static/*"],
-      "@types": ["./types"],
-      "@utils": ["./utils"]
+      "@cache": ["src/cache"],
+      "@config": ["config"],
+      "@debug": ["src/utils/debug"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@middlewares": ["src/middlewares"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@models/*": ["src/models/*"],
+      "@routes": ["src/routes"],
+      "@schemas": ["src/schemas"],
+      "@static/*": ["static/*"],
+      "@types": ["src/types"],
+      "@utils": ["src/utils"]
     },
     "esModuleInterop": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "sourceMap": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true,
+    "noImplicitThis": true,
+    "removeComments": true,
+    "types": ["node", "express"]
   },
+  "include": [".", "src/**/*"],
   "exclude": [
     "node_modules"
   ]

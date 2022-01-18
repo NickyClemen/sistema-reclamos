@@ -1,13 +1,11 @@
-import { ReclamoParameters } from '@types';
-
-function isObject(obj):boolean {
+function isObject(obj: object): boolean {
   return typeof obj === 'object';
 }
 
-function isArray(obj) {
+function isArray(obj: object): boolean {
   return Array.isArray(obj);
 }
 
-export function objectIsEmpty(obj:object):boolean {
+export function objectIsEmpty(obj: object): boolean {
   return isObject(obj) && !isArray(obj) && Object.keys(obj).length !== 0;
 }

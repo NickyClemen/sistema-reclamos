@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "@types/express": "^4.17.13",
@@ -10,17 +15,31 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "^17.0.8",
     "@types/uuid": "^8.3.4",
-    "multer": "^1.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
   },
   "dependencies": {
     "debug": "^4.3.3",
+    "dotenv": "^14.2.0",
     "express": "^4.17.2",
+    "husky": "^7.0.4",
     "joi": "^17.5.0",
     "morgan": "^1.10.0",
     "node-cache": "^5.1.2",
     "uuid": "^8.3.2",
     "winston": "^3.4.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   }
+
 }

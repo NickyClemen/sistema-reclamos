@@ -1,5 +1,7 @@
 {
   "400": "BAD REQUEST",
   "422": "Missing parameters.",
-  "delete": "No se ha podido eliminar el reclamo."
+  "delete": "No se ha podido eliminar el reclamo.",
+  "put": "No se ha podido actualizar el reclamo.",
+  "get": "No se han encontrado resultados."
 }

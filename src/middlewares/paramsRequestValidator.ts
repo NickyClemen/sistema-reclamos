@@ -1,39 +1,40 @@
-import { Request } from 'express';
+import { NextFunction, Request } from 'express';
 
 import { RequestParams } from '@schemas';
-import { MiddlewareParameters, Params, ReclamoParameters } from '@types';
+import { Params, ReclamoParameters } from '@types';
 
 import { objectIsEmpty } from '@utils';
 import debuggingLog from '@debug';
 
 import * as errorMessage from '@static/errorMessage.json';
 
-export default function paramsRequestValidator({ req, res, next }:MiddlewareParameters) {
+export default function paramsRequestValidator(
+  req: Request<Params, unknown, ReclamoParameters, unknown>,
+  res: Response,
+  next: NextFunction
+) {
   debuggingLog(`--- [paramsRequestValidator] ---`);
 
-  const { params }:Request<Params, {}, ReclamoParameters, {}> = req;
+  const { params }: Request<Params, unknown, ReclamoParameters, unknown> = req;
 
-  if(objectIsEmpty(params)) {
+  if (objectIsEmpty(params)) {
     try {
-      const validateParams = RequestParams.validateAsync(params);
+      const validateParams: Promise<typeof RequestParams> = RequestParams.validateAsync(params);
 
-      if(validateParams) {
+      if (validateParams) {
         next();
       } else {
-        return res
-          .status(422)
-          .json({
-            message: errorMessage['400']
-          });
-      }
-    } catch(err) {
-      debuggingLog(`--- [paramsRequestValidator] --- \n { message: ${ err.message }, \n errorCode: ${ err.code } \n }`);
-
-      return res
-        .status(400)
-        .json({
+        return res.status(422).json({
           message: errorMessage['400'],
         });
+      }
+    } catch (err: unknown) {
+      const error = err as Error;
+      debuggingLog(`--- [paramsRequestValidator] --- \n { message: ${ error.message }, \n }`);
+
+      return res.status(400).json({
+        message: errorMessage['400'],
+      });
     }
   }
 }
