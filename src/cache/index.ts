@@ -2,7 +2,7 @@ import NodeCache from 'node-cache';
 
 import ReclamoModel from '@models/Reclamo.model';
 
-import { PutParameters } from '@types';
+import { PutParameters, UpdateValueKeys, ReclamoUpdateKeys } from '@types';
 export default class MemoryStorage {
   private myCache;
 
@@ -40,9 +40,7 @@ export default class MemoryStorage {
   }
 
   getEntryById(id: string): ReclamoModel {
-    const entry: ReclamoModel | undefined = this.myCache.get<
-      ReclamoModel | undefined
-    >(id);
+    const entry: ReclamoModel | undefined = this.myCache.get<ReclamoModel | undefined>(id);
 
     if (typeof entry !== 'undefined') {
       return entry;
@@ -55,20 +53,22 @@ export default class MemoryStorage {
     const entry: ReclamoModel = this.getEntryById(id);
 
     if (Object.keys(entry).length !== 0) {
-      Object.keys(entry).forEach((key: string) => {
-        if (entry[key] !== updateValues[key]) {
-          entry[key] = updateValues[key];
-        }
-      });
+      if (typeof updateValues.imagen !== 'undefined') {
+        entry.imagen.push(updateValues.imagen);
+      } else if (entry.titulo !== updateValues.titulo) {
+        entry.titulo = updateValues.titulo;
+      } else if (entry.descripcion !== updateValues.descripcion) {
+        entry.descripcion = updateValues.descripcion;
+      }
 
       if (this.deleteEntryById(id)) {
         this.setEntry(entry);
 
         return entry;
       }
-
-      return {} as ReclamoModel;
     }
+
+    return {} as ReclamoModel;
   }
 
   deleteEntryById(id: string): boolean {

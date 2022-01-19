@@ -22,61 +22,54 @@ export default function handler({ app }: { app: Application }): void {
   router.get(
     '/reclamo/:id',
     ...exportMiddlewares({ prop: 'params' }),
-    (
-      req: Request<Params, unknown, ReclamoParameters, unknown>,
-      res: Response
-    ) => {
+    (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
         params: { id },
       }: Request<Params, unknown, ReclamoParameters, unknown> = req;
       const getReclamo: ReclamoModel = memoryStorage.getEntryById(id);
 
       if (!objectIsEmpty(getReclamo)) {
-        return res
-          .status(422)
-          .json({ code: 422, message: errorMessage['get'] });
+        res.status(422).json({
+          code: 422,
+          message: errorMessage['get'],
+        });
       }
 
-      return res.status(200).json({ code: 200, reclamo: getReclamo });
-    }
+      res.status(200).json({ code: 200, reclamo: getReclamo });
+    },
   );
 
   router.post(
     '/reclamo',
     ...exportMiddlewares({ prop: 'body' }),
-    (
-      req: Request<Params, unknown, ReclamoParameters, unknown>,
-      res: Response
-    ) => {
+    (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
-        body: { userId, titulo, descripcion, comuna, imagen },
+        body: { userId, titulo, descripcion, nombreComuna, imagen },
       }: Request<Params, unknown, ReclamoParameters, unknown> = req;
 
       const reclamo = new ReclamoModel({
         userId,
         titulo,
         descripcion,
-        comuna,
+        nombreComuna,
         imagen,
       });
 
       if (reclamo) {
         memoryStorage.setEntry(reclamo);
 
-        return res
-          .status(200)
-          .json({ code: 200, message: successMessage['post'] });
+        res.status(200).json({
+          code: 200,
+          message: successMessage['post'],
+        });
       }
-    }
+    },
   );
 
   router.put(
     '/reclamo/:id',
     ...exportMiddlewares({ prop: 'params' }),
-    (
-      req: Request<Params, unknown, ReclamoParameters, unknown>,
-      res: Response
-    ) => {
+    (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
         params: { id },
         body: { titulo, descripcion, imagen },
@@ -92,26 +85,23 @@ export default function handler({ app }: { app: Application }): void {
       });
 
       if (!objectIsEmpty(putRegistro)) {
-        return res.status(422).json({
+        res.status(422).json({
           code: 422,
           message: errorMessage['put'],
         });
       }
 
-      return res.status(200).json({
+      res.status(200).json({
         code: 422,
         message: successMessage['put'],
       });
-    }
+    },
   );
 
   router.delete(
     '/reclamo/:id',
     ...exportMiddlewares({ prop: 'params' }),
-    (
-      req: Request<Params, unknown, ReclamoParameters, unknown>,
-      res: Response
-    ) => {
+    (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
         params: { id },
       }: Request<Params, unknown, ReclamoParameters, unknown> = req;
@@ -124,10 +114,10 @@ export default function handler({ app }: { app: Application }): void {
         });
       }
 
-      return res.status(200).json({
+      res.status(200).json({
         code: 200,
         message: successMessage['delete'],
       });
-    }
+    },
   );
 }

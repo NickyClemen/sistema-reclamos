@@ -1,16 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
 
-import IComuna from '@interfaces/IComuna.interface';
-
 export type PutParameters = {
   id: string;
   updateValues: UpdateValueKeys;
 };
 
-type UpdateValueKeys = {
+export type UpdateValueKeys = {
   titulo: string;
   descripcion: string;
-  imagen: File;
+  imagen?: File;
+};
+
+export type ReclamoUpdateKeys = {
+  titulo: string;
+  descripcion: string;
 };
 
 export type Params = {
@@ -27,7 +30,7 @@ export type ReclamoParameters = {
   userId: string;
   titulo: string;
   descripcion: string;
-  comuna: IComuna;
+  nombreComuna: string;
   imagen: File;
 };
 

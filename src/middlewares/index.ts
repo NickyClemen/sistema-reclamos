@@ -14,10 +14,10 @@ const middlewares = {
   put: [bodyRequestValidator, paramsRequestValidator, sessionValidator],
 };
 
-const exportMiddlewares = ({ prop }: ExportMiddlewaresParams):RequestHandler[] => {
+const exportMiddlewares = ({ prop }: ExportMiddlewaresParams): RequestHandler[] => {
   debuggingLog(`--- [exportMiddlewares] ---`);
 
-  const arrMiddleware = Object.keys(middlewares).filter(key => key === prop);
+  const arrMiddleware = Object.keys(middlewares).filter((key: string) => key === prop);
 
   return arrMiddleware;
 };

@@ -11,7 +11,7 @@ import * as errorMessage from '@static/errorMessage.json';
 export default function bodyRequestValidator(
   req: Request<Params, unknown, ReclamoParameters, unknown>,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void {
   debuggingLog(`--- [bodyRequestValidator] ---`);
 
@@ -19,19 +19,20 @@ export default function bodyRequestValidator(
 
   if (objectIsEmpty(body)) {
     try {
-      const validateBody = Reclamo.validateAsync(body);
+      const validateBody = Reclamo.validate(body);
 
-      if(validateBody) {
+      if (validateBody) {
         next();
       } else {
-        return res.status(422).json({
+        res.status(422).json({
           message: errorMessage['400'],
         });
       }
-    } catch (err) {
-      debuggingLog(`--- [bodyRequestValidator] --- \n { message: ${ err.message }, \n errorCode: ${ err.code } \n }`);
+    } catch (err: unknown) {
+      const { message } = err as Error;
+      debuggingLog(`--- [bodyRequestValidator] --- \n { message: ${message}, \n }`);
 
-      return res.status(400).json({
+      res.status(400).json({
         message: errorMessage['400'],
       });
     }

@@ -6,11 +6,6 @@ export const RequestParams = Joi.object({
     .required(),
 });
 
-export const Comuna = Joi.object({
-  nombre: Joi.string().required(),
-  barrios: Joi.array().items(Joi.string()).required(),
-});
-
 export const Reclamo = Joi.object({
   userId: Joi.string()
     .guid({ version: ['uuidv4'] })
@@ -20,6 +15,6 @@ export const Reclamo = Joi.object({
     .required(),
   titulo: Joi.string().required(),
   descripcion: Joi.string().required(),
-  Comuna,
+  nombreComuna: Joi.string().required(),
   imagen: Joi.binary(),
 });
