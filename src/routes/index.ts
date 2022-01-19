@@ -4,13 +4,14 @@ import MemoryStorage from '@cache';
 
 import ReclamoModel from '@models/Reclamo.model';
 
-import exportMiddlewares from '@middlewares';
 import { ReclamoParameters, Params } from '@types';
 
 import { objectIsEmpty } from '@utils';
 
 import * as successMessage from '@static/successMessage.json';
 import * as errorMessage from '@static/errorMessage.json';
+import paramsRequestValidator from '@middlewares/paramsRequestValidator';
+import bodyRequestValidator from '@middlewares/bodyRequestValidator';
 
 export default function handler({ app }: { app: Application }): void {
   const router: Router = Router();
@@ -21,7 +22,7 @@ export default function handler({ app }: { app: Application }): void {
 
   router.get(
     '/reclamo/:id',
-    ...exportMiddlewares({ prop: 'params' }),
+    paramsRequestValidator,
     (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
         params: { id },
@@ -41,7 +42,7 @@ export default function handler({ app }: { app: Application }): void {
 
   router.post(
     '/reclamo',
-    ...exportMiddlewares({ prop: 'body' }),
+    bodyRequestValidator,
     (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
         body: { userId, titulo, descripcion, nombreComuna, imagen },
@@ -68,7 +69,8 @@ export default function handler({ app }: { app: Application }): void {
 
   router.put(
     '/reclamo/:id',
-    ...exportMiddlewares({ prop: 'params' }),
+    bodyRequestValidator,
+    paramsRequestValidator,
     (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
         params: { id },
@@ -100,7 +102,7 @@ export default function handler({ app }: { app: Application }): void {
 
   router.delete(
     '/reclamo/:id',
-    ...exportMiddlewares({ prop: 'params' }),
+    paramsRequestValidator,
     (req: Request<Params, unknown, ReclamoParameters, unknown>, res: Response) => {
       const {
         params: { id },

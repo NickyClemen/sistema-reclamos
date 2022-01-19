@@ -24,13 +24,15 @@ export default class MemoryStorage {
   getEntries(): (ReclamoModel | string)[] {
     const entries: string[] = this.myCache.keys();
 
-    if (entries.length !== 0) {
+    if (entries.length !== 0 && typeof entries !== 'undefined') {
       const reclamos: ReclamoModel[] = entries.map((id: string) => {
         const reclamo: ReclamoModel = this.getEntryById(id);
 
         if (Object.keys(reclamo).length !== 0) {
-          return reclamo as ReclamoModel;
+          return reclamo;
         }
+
+        return {} as ReclamoModel;
       });
 
       return reclamos;

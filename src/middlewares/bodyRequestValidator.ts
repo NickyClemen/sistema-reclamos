@@ -1,4 +1,4 @@
-import { Request, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 import { Reclamo } from '@schemas';
 import { Params, ReclamoParameters } from '@types';

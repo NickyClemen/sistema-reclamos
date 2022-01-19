@@ -4,7 +4,7 @@ import { AddressInfo } from 'net';
 import express, { Application } from 'express';
 import morgan from 'morgan';
 
-import { Config } from '@config';
+import Config from '@config';
 const { PORT } = new Config();
 
 import debuggingLog from '@debug';

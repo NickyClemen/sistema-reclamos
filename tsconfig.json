@@ -1,21 +1,20 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist",
     "target": "ES6",
     "paths": {
-      "@cache": ["src/cache"],
+      "@cache": ["cache"],
       "@config": ["config"],
-      "@debug": ["src/utils/debug"],
-      "@interfaces/*": ["src/interfaces/*"],
-      "@middlewares": ["src/middlewares"],
-      "@middlewares/*": ["src/middlewares/*"],
-      "@models/*": ["src/models/*"],
-      "@routes": ["src/routes"],
-      "@schemas": ["src/schemas"],
+      "@debug": ["utils/debug"],
+      "@interfaces/*": ["interfaces/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@models/*": ["models/*"],
+      "@routes": ["routes/index.ts"],
+      "@schemas": ["schemas"],
       "@static/*": ["static/*"],
-      "@types": ["src/types"],
-      "@utils": ["src/utils"]
+      "@types": ["types"],
+      "@utils": ["utils"]
     },
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -31,7 +30,7 @@
     "removeComments": true,
     "types": ["node", "express"]
   },
-  "include": [".", "src/**/*"],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules"
   ]
