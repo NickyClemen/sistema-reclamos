@@ -2,7 +2,7 @@ import NodeCache from 'node-cache';
 
 import ReclamoModel from '@models/Reclamo.model';
 
-import { PutParameters, UpdateValueKeys, ReclamoUpdateKeys } from '@types';
+import { PutParameters } from '@types';
 export default class MemoryStorage {
   private myCache;
 

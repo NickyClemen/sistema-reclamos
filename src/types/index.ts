@@ -5,15 +5,10 @@ export type PutParameters = {
   updateValues: UpdateValueKeys;
 };
 
-export type UpdateValueKeys = {
+type UpdateValueKeys = {
   titulo: string;
   descripcion: string;
   imagen?: File;
-};
-
-export type ReclamoUpdateKeys = {
-  titulo: string;
-  descripcion: string;
 };
 
 export type Params = {
