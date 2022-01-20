@@ -61,6 +61,7 @@ yarn dev ó npm run dev
 - **GET /api/reclamo/:id - Trae un reclamo por el id.**
 
   PARAMS - ID del reclamo.
+
   http://localhost:3000/api/reclamo/ff7aa67b-3771-46de-ae50-70e4d8e633bd
 
 - **PUT /api/reclamo/:id - Actualiza  un reclamo por id.**
