@@ -23,6 +23,7 @@ Para correrlo en modo desarrollo:
 yarn dev ó npm run dev
 ```
 
+Primer paso para probar la API es crear un reclamo (o tantos como se quiera) para poder usar el resto de endpoint. Cada vez que se hace build, los reclamos creados son borrados.
 ### Base URL
 - Docker: http://localhost:4000/api
 - NPM: http://localhost:3000/api
