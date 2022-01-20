@@ -40,6 +40,7 @@ yarn dev ó npm run dev
 - **POST /api/reclamo - Da de alta un reclamo.**
 
   BODY - [userId (requerido), titulo (requerido), descripción (requerido), comuna (requerido), imagen].
+
   http://localhost:3000/api/reclamo
 
   ```json
@@ -50,6 +51,8 @@ yarn dev ó npm run dev
     "comuna": "comuna1"
   }
   ```
+
+  **NOTA: El formato a enviar con la comuna es "comuna1", "comuna2", etc.**
 
 - **GET /api/reclamos - Trae todos los registros almacenados en memoria.**
 
@@ -64,6 +67,7 @@ yarn dev ó npm run dev
 
   PARAMS - ID del reclamo.
   BODY - [titulo (opcional), descripción (opcional), imagen (opcional)] a actualizar.
+
   http://localhost:3000/api/reclamo/ff7aa67b-3771-46de-ae50-70e4d8e633bd
 
    ```json
@@ -76,5 +80,6 @@ yarn dev ó npm run dev
 - **DELETE /api/reclamo/:id - Elimina un reclamo por id.**
 
   PARAMS - ID del reclamo.
+
   http://localhost:3000/api/reclamo/ff7aa67b-3771-46de-ae50-70e4d8e633bd
 
