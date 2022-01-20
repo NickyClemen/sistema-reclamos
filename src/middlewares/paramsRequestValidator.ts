@@ -6,35 +6,28 @@ import { Params, ReclamoParameters } from '@types';
 import { objectIsEmpty } from '@utils';
 import debuggingLog from '@debug';
 
-import * as errorMessage from '@static/errorMessage.json';
-
-export default function paramsRequestValidator(
+export default async function paramsRequestValidator(
   req: Request<Params, unknown, ReclamoParameters, unknown>,
   res: Response,
   next: NextFunction,
 ) {
-  debuggingLog(`--- [paramsRequestValidator] ---`);
+  debuggingLog('[paramsRequestValidator]', 'init');
 
   const { params }: Request<Params, unknown, ReclamoParameters, unknown> = req;
+  debuggingLog('[paramsRequestValidator]', JSON.stringify(params));
 
   if (objectIsEmpty(params)) {
     try {
-      const validateParams = RequestParams.validate(params);
+      const validateParams = await RequestParams.validateAsync(params);
 
-      if (validateParams) {
+      if (objectIsEmpty(validateParams)) {
         next();
-      } else {
-        res.status(422).json({
-          message: errorMessage['400'],
-        });
       }
     } catch (err: unknown) {
-      const { message } = err as Error;
-      debuggingLog(`--- [paramsRequestValidator] --- \n { message: ${message}, \n }`);
+      const error = err as Error;
+      debuggingLog('[paramsRequestValidatorError]', JSON.stringify(error));
 
-      res.status(400).json({
-        message: errorMessage['400'],
-      });
+      next(error);
     }
   }
 }

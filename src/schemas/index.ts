@@ -6,13 +6,14 @@ export const RequestParams = Joi.object({
     .required(),
 });
 
+export const ActualizacionReclamo = Joi.object({
+  titulo: Joi.string(),
+  descripcion: Joi.string(),
+  imagen: Joi.binary(),
+});
+
 export const Reclamo = Joi.object({
-  userId: Joi.string()
-    .guid({ version: ['uuidv4'] })
-    .required(),
-  id: Joi.string()
-    .guid({ version: ['uuidv4'] })
-    .required(),
+  userId: Joi.string().required(),
   titulo: Joi.string().required(),
   descripcion: Joi.string().required(),
   nombreComuna: Joi.string().required(),

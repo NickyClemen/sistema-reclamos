@@ -1,5 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
 
+import Comuna from '@models/Comuna.model';
+
+export type ComunaKeys = {
+  [key: string]: Comuna;
+};
+
 export type PutParameters = {
   id: string;
   updateValues: UpdateValueKeys;

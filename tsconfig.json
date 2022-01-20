@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "rootDir": "src",
+    "outDir": "dist",
     "baseUrl": "src",
-    "outDir": "./dist",
-    "target": "ES6",
     "paths": {
-      "@cache": ["cache"],
+      "@cache": ["cache", "cache*"],
       "@config": ["config"],
       "@debug": ["utils/debug"],
       "@interfaces/*": ["interfaces/*"],
       "@middlewares/*": ["middlewares/*"],
       "@models/*": ["models/*"],
-      "@routes": ["routes/index.ts"],
+      "@routes": ["routes"],
       "@schemas": ["schemas"],
       "@static/*": ["static/*"],
       "@types": ["types"],
@@ -19,19 +22,16 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noImplicitAny": true,
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
     "allowUnreachableCode": true,
     "allowUnusedLabels": true,
     "noImplicitThis": true,
     "removeComments": true,
-    "types": ["node", "express"]
+    "types": ["node", "express", "debug"]
   },
-  "include": ["src/**/*"],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist"
   ]
 }

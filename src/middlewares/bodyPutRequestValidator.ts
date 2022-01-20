@@ -1,25 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { Reclamo } from '@schemas';
+import { ActualizacionReclamo } from '@schemas';
 import { Params, ReclamoParameters } from '@types';
 
 import debuggingLog from '@debug';
 
 import { objectIsEmpty } from '@utils';
 
-export default async function bodyRequestValidator(
+export default async function bodyPutRequestValidator(
   req: Request<Params, unknown, ReclamoParameters, unknown>,
   res: Response,
   next: NextFunction,
 ): Promise<void> {
-  debuggingLog(`[bodyRequestValidator]`, 'init');
+  debuggingLog(`[bodyPutRequestValidator]`, 'init');
 
   const { body }: Request<Params, unknown, ReclamoParameters, unknown> = req;
-  debuggingLog(`[bodyRequestValidator]:body`, JSON.stringify(body));
+  debuggingLog(`[bodyPutRequestValidator]:body`, JSON.stringify(body));
 
   try {
-    const validateResult: Promise<any> = await Reclamo.validateAsync(body);
-    debuggingLog(`[bodyRequestValidator]:validateResult`, JSON.stringify(validateResult));
+    const validateResult: Promise<any> = await ActualizacionReclamo.validateAsync(body);
+    debuggingLog(`[bodyPutRequestValidator]:validateResult`, JSON.stringify(validateResult));
 
     if (objectIsEmpty(validateResult)) {
       next();
