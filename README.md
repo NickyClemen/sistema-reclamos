@@ -24,8 +24,8 @@ yarn dev ó npm run dev
 ```
 
 ### Base URL
-Docker: http://localhost:4000
-NPM: http//localhost:3000
+- Docker: http://localhost:4000
+- NPM: http://localhost:3000
 
 ### Headers
 
@@ -37,18 +37,18 @@ NPM: http//localhost:3000
 ```
 ### Rutas
 
-**POST /api/reclamo - Da de alta un reclamo.**
+- **POST /api/reclamo - Da de alta un reclamo.**
   BODY - [titulo, descripción, imagen, comuna]
 
-**GET /api/reclamos - Trae todos los registros almacenados en memoria.**
+- **GET /api/reclamos - Trae todos los registros almacenados en memoria.**
 
-**GET /api/reclamo/:id - Trae un reclamo por el id.**
+- **GET /api/reclamo/:id - Trae un reclamo por el id.**
   PARAMS - ID del reclamo.
 
-**PUT /api/reclamo/:id - Actualiza  un reclamo por id.**
+- **PUT /api/reclamo/:id - Actualiza  un reclamo por id.**
   PARAMS - ID del reclamo
   BODY - [userId, titulo, decripción, imagen] a actualizar.
 
-**DELETE /api/reclamo/:id - Elimina un reclamo por id.**
-PARAMS - ID del reclamo
+- **DELETE /api/reclamo/:id - Elimina un reclamo por id.**
+  PARAMS - ID del reclamo
 
