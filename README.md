@@ -38,22 +38,43 @@ yarn dev ó npm run dev
 ### Rutas
 
 - **POST /api/reclamo - Da de alta un reclamo.**
-  BODY - [titulo, descripción, imagen, comuna]
+
+  BODY - [userId (requerido), titulo (requerido), descripción (requerido), comuna (requerido), imagen].
   http://localhost:3000/api/reclamo
 
+  ```json
+  {
+    "userId": 1,
+    "titulo": "Título de prueba",
+    "descripcion": "Descripción de prueba",
+    "comuna": "comuna1"
+  }
+  ```
+
 - **GET /api/reclamos - Trae todos los registros almacenados en memoria.**
+
   http://localhost:3000/api/reclamos
 
 - **GET /api/reclamo/:id - Trae un reclamo por el id.**
+
   PARAMS - ID del reclamo.
   http://localhost:3000/api/reclamo/ff7aa67b-3771-46de-ae50-70e4d8e633bd
 
 - **PUT /api/reclamo/:id - Actualiza  un reclamo por id.**
-  PARAMS - ID del reclamo
-  BODY - [userId, titulo, decripción, imagen] a actualizar.
+
+  PARAMS - ID del reclamo.
+  BODY - [titulo (opcional), descripción (opcional), imagen (opcional)] a actualizar.
   http://localhost:3000/api/reclamo/ff7aa67b-3771-46de-ae50-70e4d8e633bd
 
+   ```json
+  {
+    "titulo": "Título de prueba",
+    "descripcion": "Descripción de prueba",
+  }
+  ```
+
 - **DELETE /api/reclamo/:id - Elimina un reclamo por id.**
-  PARAMS - ID del reclamo
+
+  PARAMS - ID del reclamo.
   http://localhost:3000/api/reclamo/ff7aa67b-3771-46de-ae50-70e4d8e633bd
 
