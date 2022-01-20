@@ -12,12 +12,15 @@ import debuggingLog from '@debug';
 import handler from '@routes';
 
 import errorHandler from '@middlewares/errorMiddleware';
+import setHeadersMiddleware from '@middlewares/setHeadersMiddleware';
 
 const app: Application = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('tiny'));
+
+app.use(setHeadersMiddleware);
 
 handler({ app });
 

@@ -7,7 +7,8 @@
     "build": "tsc --build --verbose",
     "dev": "DEBUG=sistema-reclamos:* NODE_ENV='development' ts-node -r tsconfig-paths/register src/index.ts --pretty",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "start": "DEBUG=sistema-reclamos:* NODE_ENV='production' node -r ts-node/register/transpile-only -r tsconfig-paths/register dist"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
