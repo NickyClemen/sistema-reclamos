@@ -24,8 +24,6 @@ export default async function bodyPutRequestValidator(
     if (objectIsEmpty(validateResult)) {
       next();
     }
-
-    next(validateResult);
   } catch (err: unknown) {
     const error = err as Error;
     next(error);
