@@ -32,8 +32,8 @@ Primer paso para probar la API es crear un reclamo (o tantos como se quiera) par
 
 ``` json
 {
-  "Content-Type": "application.json",
-  "Accept": "application.json"
+  "Content-Type": "application/json",
+  "Accept": "application/json"
 }
 ```
 ### Rutas
